@@ -105,9 +105,9 @@ namespace ASCIIArt
             {
                 resolution = Convert.ToInt32(input);
                 pxgen = new PixelGenerator(resolution);
-                if(resolution <= 0 || resolution >= 3)
+                if(resolution <= 0 || resolution >= 4)
                 {
-                    throw new Exception("Resolution out of range (1 - 2)");
+                    throw new Exception("Resolution out of range (1 - 3)");
                 }
             }
             catch (Exception e)
