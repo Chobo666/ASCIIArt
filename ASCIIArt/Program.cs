@@ -52,10 +52,10 @@ namespace ASCIIArt
 
                 double kroku = Math.Max(Math.Abs(dx), Math.Abs(dy));
 
-                double x = (double) x1;
-                double y = (double) y1;
+                double x = (double) x1 + resolution/2;
+                double y = (double) y1 + resolution/2;
 
-                for(int i = 0; i < kroku + resolution; i++)
+                for(int i = 0; i < kroku; i++)
                 {
                     Canvas[(int) Math.Round(x), (int) Math.Round(y)] = 1;
                     x += dx / kroku;
@@ -73,10 +73,10 @@ namespace ASCIIArt
         static void DrawCanvas()
         {
             string line;
-            for (int y = 0; y < dimX; y += 1)
+            for (int y = 0; y < dimY; y += 1)
             {
                 line = "";
-                for(int x = 0; x < dimY; x += 1)
+                for(int x = 0; x < dimX; x += 1)
                 {
                     line += GetPixel(x,y);
                 }
@@ -87,10 +87,10 @@ namespace ASCIIArt
         static void DataPrint()
         {
             string line;
-            for (int x = 0; x < dimX*resolution; x += 1)
+            for (int y = 0; y < dimY*resolution; y += 1)
             {
                 line = "";
-                for (int y = 0; y < dimY*resolution; y += 1)
+                for (int x = 0; x < dimX*resolution; x += 1)
                 {
                     line += Canvas[x,y];
                 }
@@ -157,7 +157,7 @@ namespace ASCIIArt
 
             while (cont)
             {
-                input = Console.ReadLine();
+                input = Console.ReadLine().ToLower();
                 switch (input)
                 {
                     case "exit": cont = false;
@@ -168,7 +168,9 @@ namespace ASCIIArt
                         break;
                     case "canvas": DataPrint();
                         break;
-                    case "help": Console.WriteLine("Commands: \r\n 'line' \r\n 'show' \r\n 'exit'");
+                    case "bruh": Console.WriteLine("You don't have permissions to use this command");
+                        break;
+                    case "help": Console.WriteLine("Commands: \r\n 'line' \r\n 'show' \r\n 'exit' \r\n 'canvas'");
                         break;
                     default: Console.WriteLine("Unexpected command, type 'help' for help");
                         break;
